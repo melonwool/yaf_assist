@@ -1,0 +1,14 @@
+// $Id$
+// vim:ft=javascript
+
+ARG_ENABLE("yaf_assist", "enable yaf_assist support", "no");
+
+if (PHP_YAF_ASSIST != "no") {
+	// AC_DEFINE('MYSQLI_USE_MYSQLND', 1, 'Using MySQL native driver');
+	// AC_DEFINE('HAVE_MYSQLILIB', 1,     'Have MySQLi library');
+	ADD_FLAG("CFLAGS_YAF_ASYNC", "/P")
+	// ADD_EXTENSION_DEP("yaf_assist", "mysqli")
+	EXTENSION("yaf_assist", "yaf_assist.c", true, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1")
+	ADD_SOURCES(configure_module_dirname + "\\database", "mysql.c", "yaf_assist")
+}
+
